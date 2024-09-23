@@ -6,7 +6,7 @@ import java.util.List;
 import student.Student;
 
 public class Team {
-    private List<Student> teamList;
+    private ArrayList<Student> teamList;
     private int startTime;
     private int endTime;
     private int teamNumber;
@@ -23,7 +23,7 @@ public class Team {
         return teamList;
     }
 
-    public void setTeamList(List<Student> teamList) {
+    public void setTeamList(ArrayList<Student> teamList) {
         this.teamList = teamList;
     }
 
@@ -45,13 +45,14 @@ public class Team {
         this.endTime = endTime;
     }
 
-    // Getter and Setter for TeamNumber
     public int getTeamNumber() {
-        return teamNumber;
+        return this.teamNumber;
     }
 
-    public void setTeamNumber(int teamNumber) {
-        this.teamNumber = teamNumber;
+    public void setTeamNumber(int num) {
+        if (num < 0) {
+            throw new IllegalArgumentException("Team Number out of Range.");
+        }
     }
 
     public void addStudentToTeam(Student student) {

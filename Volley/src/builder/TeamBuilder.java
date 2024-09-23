@@ -3,18 +3,17 @@ package builder;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import io.VolleyIO;
 import student.Student;
 import team.Team;
 
 public class TeamBuilder {
-    private List<Student> studentList;
-    private List<Team> teamList;
+    private ArrayList<Student> studentList;
+    private ArrayList<Team> teamList;
 
     public TeamBuilder(String fileName) {
-        teamList = new ArrayList<>();
+        teamList = new ArrayList<Team>();
 
         try {
             studentList = VolleyIO.readStudentFromFile(fileName);
