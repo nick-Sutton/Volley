@@ -111,6 +111,15 @@ public class Student {
         this.teamNumber = teamNumber;
     }
 
+    public void appendDayToTimes() {
+        this.mondayTimes = "m:" + getMondayTimes();
+        this.tuesdayTimes = "t:" + getTuesdayTimes();
+        this.wednesdayTimes = "w:" + getWednesdayTimes();
+        this.thursdayTimes = "u:" + getThursdayTimes();
+        this.fridayTimes = "f:" + getFridayTimes();
+        
+    }
+
     @Override
     public String toString() {
         return name + "," + email + "," + mondayTimes + "," + 

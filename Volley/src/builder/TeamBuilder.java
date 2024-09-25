@@ -1,10 +1,9 @@
 package builder;
 
+import io.VolleyIO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import io.VolleyIO;
 import student.Student;
 import team.Team;
 
@@ -13,7 +12,7 @@ public class TeamBuilder {
     private ArrayList<Team> teamList;
 
     public TeamBuilder(String fileName) {
-        teamList = new ArrayList<Team>();
+        teamList = new ArrayList<>();
 
         try {
             studentList = VolleyIO.readStudentFromFile(fileName);
@@ -27,6 +26,7 @@ public class TeamBuilder {
 
         for (int i = 0; i < studentList.size(); i++) {
             // Compare each time and find number of unique ones
+            // The number of unique times determines the number of team
             teamCounter++;
         }
 
@@ -47,10 +47,7 @@ public class TeamBuilder {
 
     public void assignStudentsToTeams() {
         for (int i = 0; i < studentList.size(); i++) {
-            if (studentList.get(i).getStartTime() == teamList.get(i).getStartTime() &&
-                studentList.get(i).getEndTime() == teamList.get(i).getEndTime()) {
-                teamList.get(i).addStudentToTeam(studentList.get(i));
-            }
+            System.out.print("FIX THIS");
         }
     }
 

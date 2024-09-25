@@ -6,21 +6,28 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import student.Student;
 
 public class VolleyIO {
 
-    public ArrayList<Student> readStudentFromFile(String fileName) throws FileNotFoundException {
-        Scanner fileReader = new Scanner(new FileInputStream(fileName)); 
+    public static ArrayList<Student> readStudentFromFile(String fileName) throws FileNotFoundException {
+        ArrayList<Student> studentList;
 
-        ArrayList<Student> studentList = new ArrayList<Student>();
+        try (Scanner fileReader = new Scanner(new FileInputStream(fileName))) {
+            studentList = new ArrayList<>();
 
-        while(fileReader.hasNextLine()) {
-            Student student = parseStudent(fileReader.nextLine());
-            studentList.add(student);
+            // Skip first line that contains column headers
+            if (fileReader.hasNextLine()) {
+                fileReader.nextLine();
+            }
+
+            while(fileReader.hasNextLine()) {
+                Student student = parseStudent(fileReader.nextLine());
+                studentList.add(student);
+            }
+        } catch(FileNotFoundException e) {
+            throw new IllegalArgumentException(e.getMessage());
         }
-        fileReader.close();
 
         System.out.println(studentList.toString());
         return studentList;
@@ -50,12 +57,12 @@ public class VolleyIO {
     }
 
     public static void writeStudentToFile(String fileName, ArrayList<Student> studentList) throws FileNotFoundException {
-    	PrintStream fileWriter = new PrintStream(new File(fileName));
-
-    	for (int i = 0; i < studentList.size(); i++) {
-    	    fileWriter.println(studentList.get(i).toString());
-    	}
-
-    	fileWriter.close();
+        try (PrintStream fileWriter = new PrintStream(new File(fileName))) {
+            for (int i = 0; i < studentList.size(); i++) {
+                fileWriter.println(studentList.get(i).toString());
+            }
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(e.getMessage());
+        }
     }
 }

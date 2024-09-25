@@ -1,7 +1,8 @@
 {
-    "java.project.sourcePaths": ["Volley/src"],
+    "java.project.sourcePaths": ["Volley/src", "Volley/tests"],
     "java.project.outputPath": "Volley/bin",
     "java.project.referencedLibraries": [
-        "Volley/lib/**/*.jar"
+        "Volley/lib/**/*.jar",
+        "test-lib\\**\\*.jar"
     ]
 }
