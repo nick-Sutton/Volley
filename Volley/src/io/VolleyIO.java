@@ -11,7 +11,7 @@ import student.Student;
 
 public class VolleyIO {
 
-    public static ArrayList<Student> readStudentFromFile(String fileName) throws FileNotFoundException {
+    public ArrayList<Student> readStudentFromFile(String fileName) throws FileNotFoundException {
         Scanner fileReader = new Scanner(new FileInputStream(fileName)); 
 
         ArrayList<Student> studentList = new ArrayList<Student>();
@@ -22,6 +22,7 @@ public class VolleyIO {
         }
         fileReader.close();
 
+        System.out.println(studentList.toString());
         return studentList;
     }
 
@@ -39,21 +40,13 @@ public class VolleyIO {
             String thursdayTimes = lineReader.next();
             String fridayTimes = lineReader.next();
     		
-            return new Student(name, email, meetingDays, thursdayTimes, fridayTimes);
+            return new Student(name, email, mondayTimes, tuesdayTimes, wednesdayTimes, thursdayTimes, fridayTimes);
     	} catch (Exception e) {
     		throw e;
     	} finally {
     		lineReader.close();
     	}
 
-    }
-
-    private static void scannerStringToInt(Scanner lineReader, int integer) {
-        if (lineReader.hasNextInt()) {
-            integer = lineReader.nextInt();
-        } else {
-            throw new IllegalArgumentException();
-        }
     }
 
     public static void writeStudentToFile(String fileName, ArrayList<Student> studentList) throws FileNotFoundException {

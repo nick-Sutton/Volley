@@ -3,17 +3,21 @@ package student;
 public class Student {
     private String name;
     private String email;
-    private String meetingDays;
-    private int startTime;
-    private int endTime;
+    private String mondayTimes;
+    private String tuesdayTimes;
+    private String wednesdayTimes;
+    private String thursdayTimes;
+    private String fridayTimes;
     private int teamNumber;
 
-    public Student(String name, String email, String meetingDays, int startTime, int endTime) {
+    public Student(String name, String email, String mondayTimes, String tuesdayTimes, String wednesdayTimes, String thursdayTimes, String fridayTimes) {
         setName(name);
         setEmail(email);
-        setMeetingDays(meetingDays);
-        setStartTime(startTime);
-        setEndTime(endTime);
+        setMondayTimes(mondayTimes);
+        setTuesdayTimes(tuesdayTimes);
+        setWednesdayTimes(wednesdayTimes);
+        setThursdayTimes(thursdayTimes);
+        setFridayTimes(fridayTimes);
         setTeamNumber(0);
     }
 
@@ -37,41 +41,65 @@ public class Student {
 
     private void setEmail(String email) {
         if (email == null || email.length() == 0) {
-            throw new IllegalArgumentException("Invalid Student Name.");
+            throw new IllegalArgumentException("Invalid Student Email.");
         }
 
         this.email = email;
     }
 
-    // Getter and Setter for MeetingDays
-    public String getMeetingDays() {
-        return meetingDays;
+    public String getMondayTimes() {
+        return mondayTimes;
     }
 
-    public void setMeetingDays(String meetingDays) {
-        if (meetingDays == null || meetingDays.length() == 0) {
-            throw new IllegalArgumentException("Invalid Student Name.");
+    public void setMondayTimes(String mondayTimes) {
+        if (mondayTimes == null) {
+            throw new IllegalArgumentException("Monday times cannot be null.");
         }
-
-        this.meetingDays = meetingDays;
+        this.mondayTimes = mondayTimes;
     }
 
-    // Getter and Setter for StartTime
-    public int getStartTime() {
-        return startTime;
+    public String getTuesdayTimes() {
+        return tuesdayTimes;
     }
 
-    public void setStartTime(int startTime) {
-        this.startTime = startTime;
+    public void setTuesdayTimes(String tuesdayTimes) {
+        if (tuesdayTimes == null) {
+            throw new IllegalArgumentException("Tuesday times cannot be null.");
+        }
+        this.tuesdayTimes = tuesdayTimes;
     }
 
-    // Getter and Setter for EndTime
-    public int getEndTime() {
-        return endTime;
+    public String getWednesdayTimes() {
+        return wednesdayTimes;
     }
 
-    public void setEndTime(int endTime) {
-        this.endTime = endTime;
+    public void setWednesdayTimes(String wednesdayTimes) {
+        if (wednesdayTimes == null) {
+            throw new IllegalArgumentException("Wednesday times cannot be null.");
+        }
+        this.wednesdayTimes = wednesdayTimes;
+    }
+
+    public String getThursdayTimes() {
+        return thursdayTimes;
+    }
+
+    public void setThursdayTimes(String thursdayTimes) {
+        if (thursdayTimes == null) {
+            throw new IllegalArgumentException("Thursday times cannot be null.");
+        }
+        this.thursdayTimes = thursdayTimes;
+    }
+
+    public String getFridayTimes() {
+        return fridayTimes;
+    }
+
+    public void setFridayTimes(String fridayTimes) {
+        if (fridayTimes == null) {
+            throw new IllegalArgumentException("Friday times cannot be null.");
+        }
+        this.fridayTimes = fridayTimes;
     }
 
     // Getter and Setter for TeamNumber
@@ -81,5 +109,12 @@ public class Student {
 
     public void setTeamNumber(int teamNumber) {
         this.teamNumber = teamNumber;
+    }
+
+    @Override
+    public String toString() {
+        return name + "," + email + "," + mondayTimes + "," + 
+               tuesdayTimes + "," + wednesdayTimes + "," + 
+               thursdayTimes + "," + fridayTimes;
     }
 }
