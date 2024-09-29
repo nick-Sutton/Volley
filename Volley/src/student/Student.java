@@ -1,6 +1,6 @@
 package student;
 
-public class Student {
+public final class Student {
     private String name;
     private String email;
     private String mondayTimes;
@@ -51,7 +51,7 @@ public class Student {
         return mondayTimes;
     }
 
-    public void setMondayTimes(String mondayTimes) {
+    public final void setMondayTimes(String mondayTimes) {
         if (mondayTimes == null) {
             throw new IllegalArgumentException("Monday times cannot be null.");
         }
@@ -62,7 +62,7 @@ public class Student {
         return tuesdayTimes;
     }
 
-    public void setTuesdayTimes(String tuesdayTimes) {
+    public final void setTuesdayTimes(String tuesdayTimes) {
         if (tuesdayTimes == null) {
             throw new IllegalArgumentException("Tuesday times cannot be null.");
         }
@@ -73,7 +73,7 @@ public class Student {
         return wednesdayTimes;
     }
 
-    public void setWednesdayTimes(String wednesdayTimes) {
+    public final void setWednesdayTimes(String wednesdayTimes) {
         if (wednesdayTimes == null) {
             throw new IllegalArgumentException("Wednesday times cannot be null.");
         }
@@ -84,7 +84,7 @@ public class Student {
         return thursdayTimes;
     }
 
-    public void setThursdayTimes(String thursdayTimes) {
+    public final void setThursdayTimes(String thursdayTimes) {
         if (thursdayTimes == null) {
             throw new IllegalArgumentException("Thursday times cannot be null.");
         }
@@ -95,7 +95,7 @@ public class Student {
         return fridayTimes;
     }
 
-    public void setFridayTimes(String fridayTimes) {
+    public final void setFridayTimes(String fridayTimes) {
         if (fridayTimes == null) {
             throw new IllegalArgumentException("Friday times cannot be null.");
         }

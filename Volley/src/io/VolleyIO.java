@@ -38,14 +38,20 @@ public class VolleyIO {
         lineReader.useDelimiter(",");
 
         try {
-    		
-        	String name = lineReader.next();
-        	String email = lineReader.next();
-        	String mondayTimes = lineReader.next();
-            String tuesdayTimes = lineReader.next();
-            String wednesdayTimes = lineReader.next();
-            String thursdayTimes = lineReader.next();
-            String fridayTimes = lineReader.next();
+            // Submission date and time used for hashing function
+    		String submitionDate = lineReader.next();
+            String submitionTime = lineReader.next();
+
+            String name = lineReader.next();
+            String email = lineReader.next();
+
+            String mondayTimes = lineReader.hasNext() ? lineReader.next() : "";
+            String tuesdayTimes = lineReader.hasNext() ? lineReader.next() : "";
+            String wednesdayTimes = lineReader.hasNext() ? lineReader.next() : "";
+            String thursdayTimes = lineReader.hasNext() ? lineReader.next() : "";
+            String fridayTimes = lineReader.hasNext() ? lineReader.next() : "";
+
+            System.out.print(fridayTimes);
     		
             return new Student(name, email, mondayTimes, tuesdayTimes, wednesdayTimes, thursdayTimes, fridayTimes);
     	} catch (Exception e) {
