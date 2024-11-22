@@ -72,15 +72,19 @@ public class VolleyIO {
         ArrayList<Integer> dayTimes = new ArrayList<>();
 
         for (String time : times) {
-            String[] timeStringArray = time.split("-");
-            String startTime = timeStringArray[0];
-            String endTime = timeStringArray[1];
-    
-            int start24 = convertTo24Hour(startTime);
-            int end24 = convertTo24Hour(endTime);
-    
-            int formattedTime = start24 * 10000 + end24; 
-            dayTimes.add(formattedTime); 
+            if (time.equals("Not Available")) {
+                dayTimes.add(0);
+            } else {
+                String[] timeStringArray = time.split("-");
+                String startTime = timeStringArray[0];
+                String endTime = timeStringArray[1];
+        
+                int start24 = convertTo24Hour(startTime);
+                int end24 = convertTo24Hour(endTime);
+        
+                int formattedTime = start24 * 10000 + end24; 
+                dayTimes.add(formattedTime); 
+            }
         }
 
         return dayTimes;
