@@ -1,16 +1,18 @@
 package student;
 
+import java.util.ArrayList;
+
 public final class Student {
     private String name;
     private String email;
-    private String mondayTimes;
-    private String tuesdayTimes;
-    private String wednesdayTimes;
-    private String thursdayTimes;
-    private String fridayTimes;
+    private ArrayList<Integer> mondayTimes;
+    private ArrayList<Integer> tuesdayTimes;
+    private ArrayList<Integer> wednesdayTimes;
+    private ArrayList<Integer> thursdayTimes;
+    private ArrayList<Integer> fridayTimes;
     private int teamNumber;
 
-    public Student(String name, String email, String mondayTimes, String tuesdayTimes, String wednesdayTimes, String thursdayTimes, String fridayTimes) {
+    public Student(String name, String email, ArrayList<Integer> mondayTimes, ArrayList<Integer> tuesdayTimes, ArrayList<Integer> wednesdayTimes, ArrayList<Integer> thursdayTimes, ArrayList<Integer> fridayTimes) {
         setName(name);
         setEmail(email);
         setMondayTimes(mondayTimes);
@@ -44,61 +46,53 @@ public final class Student {
             throw new IllegalArgumentException("Invalid Student Email.");
         }
 
+        int atSymbolIndex = email.indexOf('@');
+		int lastPeriodIndex = email.lastIndexOf('.');
+
+		if (atSymbolIndex == -1 || lastPeriodIndex == -1 || lastPeriodIndex < atSymbolIndex) {
+			throw new IllegalArgumentException("Invalid Student Email.");
+		}
+
         this.email = email;
     }
 
-    public String getMondayTimes() {
+    public ArrayList<Integer> getMondayTimes() {
         return mondayTimes;
     }
 
-    public final void setMondayTimes(String mondayTimes) {
-        if (mondayTimes == null) {
-            throw new IllegalArgumentException("Monday times cannot be null.");
-        }
+    public void setMondayTimes(ArrayList<Integer> mondayTimes) {
         this.mondayTimes = mondayTimes;
     }
 
-    public String getTuesdayTimes() {
+    public ArrayList<Integer> getTuesdayTimes() {
         return tuesdayTimes;
     }
 
-    public final void setTuesdayTimes(String tuesdayTimes) {
-        if (tuesdayTimes == null) {
-            throw new IllegalArgumentException("Tuesday times cannot be null.");
-        }
+    public void setTuesdayTimes(ArrayList<Integer> tuesdayTimes) {
         this.tuesdayTimes = tuesdayTimes;
     }
 
-    public String getWednesdayTimes() {
+    public ArrayList<Integer> getWednesdayTimes() {
         return wednesdayTimes;
     }
 
-    public final void setWednesdayTimes(String wednesdayTimes) {
-        if (wednesdayTimes == null) {
-            throw new IllegalArgumentException("Wednesday times cannot be null.");
-        }
+    public void setWednesdayTimes(ArrayList<Integer> wednesdayTimes) {
         this.wednesdayTimes = wednesdayTimes;
     }
 
-    public String getThursdayTimes() {
+    public ArrayList<Integer> getThursdayTimes() {
         return thursdayTimes;
     }
 
-    public final void setThursdayTimes(String thursdayTimes) {
-        if (thursdayTimes == null) {
-            throw new IllegalArgumentException("Thursday times cannot be null.");
-        }
+    public void setThursdayTimes(ArrayList<Integer> thursdayTimes) {
         this.thursdayTimes = thursdayTimes;
     }
 
-    public String getFridayTimes() {
+    public ArrayList<Integer> getFridayTimes() {
         return fridayTimes;
     }
 
-    public final void setFridayTimes(String fridayTimes) {
-        if (fridayTimes == null) {
-            throw new IllegalArgumentException("Friday times cannot be null.");
-        }
+    public void setFridayTimes(ArrayList<Integer> fridayTimes) {
         this.fridayTimes = fridayTimes;
     }
 
@@ -109,15 +103,6 @@ public final class Student {
 
     public void setTeamNumber(int teamNumber) {
         this.teamNumber = teamNumber;
-    }
-
-    public void appendDayToTimes() {
-        this.mondayTimes = "m:" + getMondayTimes();
-        this.tuesdayTimes = "t:" + getTuesdayTimes();
-        this.wednesdayTimes = "w:" + getWednesdayTimes();
-        this.thursdayTimes = "u:" + getThursdayTimes();
-        this.fridayTimes = "f:" + getFridayTimes();
-        
     }
 
     @Override

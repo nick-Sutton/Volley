@@ -45,21 +45,68 @@ public class VolleyIO {
             String name = lineReader.next();
             String email = lineReader.next();
 
-            String mondayTimes = lineReader.hasNext() ? lineReader.next() : "";
-            String tuesdayTimes = lineReader.hasNext() ? lineReader.next() : "";
-            String wednesdayTimes = lineReader.hasNext() ? lineReader.next() : "";
-            String thursdayTimes = lineReader.hasNext() ? lineReader.next() : "";
-            String fridayTimes = lineReader.hasNext() ? lineReader.next() : "";
+            String mondayString = lineReader.hasNext() ? lineReader.next() : "";
+            String tuesdayString = lineReader.hasNext() ? lineReader.next() : "";
+            String wednesdayString = lineReader.hasNext() ? lineReader.next() : "";
+            String thursdayString = lineReader.hasNext() ? lineReader.next() : "";
+            String fridayString = lineReader.hasNext() ? lineReader.next() : "";
 
-            System.out.print(fridayTimes);
+            ArrayList<Integer> mondayTimes = parseTime(mondayString);
+            ArrayList<Integer> tuesdayTimes = parseTime(tuesdayString);
+            ArrayList<Integer> wednesdayTimes = parseTime(wednesdayString);
+            ArrayList<Integer> thursdayTimes = parseTime(thursdayString);
+            ArrayList<Integer> fridayTimes = parseTime(fridayString);
+
     		
             return new Student(name, email, mondayTimes, tuesdayTimes, wednesdayTimes, thursdayTimes, fridayTimes);
-    	} catch (Exception e) {
+    	 } catch (Exception e) {
     		throw e;
     	} finally {
     		lineReader.close();
     	}
 
+    }
+    
+    private static ArrayList<Integer> parseTime(String timeString) {
+        String[] times = timeString.split(";");
+        ArrayList<Integer> dayTimes = new ArrayList<>();
+
+        for (String time : times) {
+            String[] timeStringArray = time.split("-");
+            String startTime = timeStringArray[0];
+            String endTime = timeStringArray[1];
+    
+            int start24 = convertTo24Hour(startTime);
+            int end24 = convertTo24Hour(endTime);
+    
+            int formattedTime = start24 * 10000 + end24; 
+            dayTimes.add(formattedTime); 
+        }
+
+        return dayTimes;
+    }
+
+    private static int convertTo24Hour(String time) {
+        // Check if the time contains "AM" or "PM"
+        boolean isPM = time.endsWith("PM");
+        boolean isAM = time.endsWith("AM");
+
+        // Remove "AM" or "PM" from the time string
+        time = time.replace("AM", "").replace("PM", "").trim();
+
+        // Split into hours and minutes
+        String[] parts = time.split(":");
+        int hour = Integer.parseInt(parts[0]);
+        int minute = Integer.parseInt(parts[1]);
+
+        // Convert to 24-hour time
+        if (isPM && hour != 12) {
+            hour += 12;
+        } else if (isAM && hour == 12) {
+            hour = 0;
+        }
+
+        return hour * 100 + minute;
     }
 
     public static void writeStudentToFile(String fileName, ArrayList<Student> studentList) throws FileNotFoundException {
